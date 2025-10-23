@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p build && ecmarkup --lint-spec --strict --load-biblio @tc39/ecma262-biblio --verbose --assets-dir build spec.html build/index.html",
+    "format": "emu-format --write spec.html"
+  },
+  "dependencies": {
+    "@tc39/ecma262-biblio": "2.1.2963",
+    "ecmarkup": "^21.4.0",
+    "jsdom": "^26.1.0",
+    "parse5-html-rewriting-stream": "^7.1.0",
+    "tmp": "^0.2.3"
+  }
+}
