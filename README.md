@@ -8,7 +8,7 @@ Authors: Kevin Gibbons
 
 Champions: Kevin Gibbons
 
-This proposal is at stage 0 of [the TC39 process](https://tc39.es/process-document/): it has not yet been presented to the committee.
+This proposal is at stage 2.7 of [the TC39 process](https://tc39.es/process-document/): it awaits Test262 tests. Interested parties can follow or contribute based on [this testing plan](https://github.com/tc39/test262/issues/4697).
 
 ## Motivation
 
@@ -20,4 +20,4 @@ This came up [during the original iterator helpers proposal](https://github.com/
 
 ## Proposal
 
-While in principle there are various ways to solve this problem, the obvious one is to add `Iterator.prototype.join` which works exactly like `Array.prototype.join` except that it operates on its receiver as an iterator rather than as an Array. That is what is [currently specified](https://bakkot.github.io/proposal-iterator-join/).
+While in principle there are various ways to solve this problem, the obvious one is to add `Iterator.prototype.join` which works exactly like `Array.prototype.join` except that it operates on its receiver as an iterator rather than as an Array. That is what is [currently specified](https://tc39.github.io/proposal-iterator-join/).
