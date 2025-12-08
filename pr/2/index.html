@@ -1,0 +1,151 @@
+<!doctype html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1"><meta charset="utf-8"><meta property="og:image" content="https://tc39.es/ecmarkup/ecma-logo.png"><meta property="og:title" content="Proposal Iterator Join"><meta property="og:description" content="Iterator.prototype.join ( _separator_ )
+  This method converts the values of the iterator to Strings, and then concatenates these Strings, separated by occurrences of the _separator_. If no separator is provided, a single comma is used as the separator.
+  It performs the following steps when call">
+<title>Proposal Iterator Join</title><script src="js/ecmarkup.js?cache=oEMGaWEA" defer=""></script><link rel="stylesheet" href="css/ecmarkup.css"><link rel="stylesheet" href="css/print.css" media="print"><style>
+    @media print {
+      @page :left {
+        @bottom-right {
+          content: '© Ecma International 2025';
+        }
+      }
+      @page :right {
+        @bottom-left {
+          content: '© Ecma International 2025';
+        }
+      }
+      @page :first {
+        @bottom-left {
+          content: '';
+        }
+        @bottom-right {
+          content: '';
+        }
+      }
+      @page :blank {
+        @bottom-left {
+          content: '';
+        }
+        @bottom-right {
+          content: '';
+        }
+      }
+    }
+    </style><style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/solarized-light.min.css");
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/a11y-dark.min.css") (prefers-color-scheme: dark);
+    </style><style>
+  details.annoying-warning {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    border: 2px solid white;
+    background-color: #920800;
+    background-image: linear-gradient(transparent 40%, rgba(255, 255, 255, 0.2));
+    color: white;
+    opacity: .95;
+  }
+
+  details.annoying-warning[open] {
+    top: 40%;
+    translate: 0 calc(-1 * min(50%, 40vh));
+    left: 5%;
+    right: 5%;
+    margin: 0 auto;
+    max-width: 800px;
+    outline: solid 10000px rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    border-width: 1px;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  }
+
+  details.annoying-warning > summary {
+    padding: 0.5ex 1ex;
+    font-size: 0.875em;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.85);
+    cursor: default;
+  }
+
+  details.annoying-warning > p {
+    line-height: 1.4;
+    margin: 1em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.85);
+  }
+
+  details.annoying-warning a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>
+
+</head><body><details class="annoying-warning">
+  <summary>PR #2</summary>
+  <p>
+    This document is a preview of merging <a href="https://github.com/tc39/proposal-iterator-join/pull/2">PR #2</a> as commit <a href="https://github.com/tc39/proposal-iterator-join/commit/4cadb32afceeccb3f1c84e2daa4dc3d1e9b21f73"><code>4cadb32afceeccb3f1c84e2daa4dc3d1e9b21f73</code></a>.
+  </p>
+  <p>
+    Do not reference it as authoritative in any way.
+    Instead, see the living specification at <a href="https://github.com/tc39/proposal-iterator-join">https://github.com/tc39/proposal-iterator-join</a>.
+  </p>
+</details>
+<script>
+  {
+    const dismissWarnings = evt => {
+      if (evt.code !== 'Escape') return;
+      for (const el of document.querySelectorAll('details.annoying-warning[open]')) {
+        el.open = false;
+      }
+    };
+    document.addEventListener('keydown', dismissWarnings, { passive: true });
+  }
+</script>
+<div id="shortcuts-help">
+<ul>
+  <li><span>Toggle shortcuts help</span><code>?</code></li>
+  <li><span>Toggle "can call user code" annotations</span><code>u</code></li>
+
+  <li><span>Jump to search box</span><code>/</code></li>
+  <li><span>Toggle pinning of the current clause</span><code>p</code></li>
+  <li><span>Jump to the <i>n</i><sup>th</sup> pin</span><code>1-9</code></li>
+  <li><span>Jump to the 10<sup>th</sup> pin</span><code>0</code></li>
+  <li><span>Jump to the most recent link target</span><code>`</code></li>
+</ul></div><div id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; stroke:currentColor" viewBox="0 0 120 120" width="54" height="54">
+      <title>Menu</title>
+      <path stroke-width="10" stroke-linecap="round" d="M30,60 h60  M30,30 m0,5 h60  M30,90 m0,-5 h60"></path>
+    </svg></div><div id="menu-spacer" class="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins<button class="unpin-all">clear</button></div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-iterator.prototype.join" title="Iterator.prototype.join ( separator )"><span class="secnum">1</span> Iterator.prototype.join ( <var>separator</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License">Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version">Stage 0 Draft / December 8, 2025</h1><h1 class="title">Proposal Iterator Join</h1>
+
+<div id="metadata-block">
+  <h1>Contributing to this Proposal</h1>
+  <p>You can discuss this proposal <a href="https://github.com/bakkot/proposal-iterator-join">on GitHub</a>.</p>
+</div>
+
+<emu-clause id="sec-iterator.prototype.join">
+  <h1><span class="secnum">1</span> Iterator.prototype.join ( <var>separator</var> )</h1>
+  <p>This method converts the values of the <emu-xref href="#sec-iterator-interface"><a href="https://tc39.es/ecma262/#sec-iterator-interface">iterator</a></emu-xref> to Strings, and then concatenates these Strings, separated by occurrences of the <var>separator</var>. If no separator is provided, a single comma is used as the separator.</p>
+  <p>It performs the following steps when called:</p>
+  <emu-alg><ol><li>Let <var>O</var> be the <emu-val>this</emu-val> value.</li><li>If <var>O</var> <emu-xref href="#sec-object-type"><a href="https://tc39.es/ecma262/#sec-object-type">is not an Object</a></emu-xref>, throw a <emu-val>TypeError</emu-val> exception.</li><li>Let <var>iterated</var> be the <emu-xref href="#sec-iterator-records"><a href="https://tc39.es/ecma262/#sec-iterator-records">Iterator Record</a></emu-xref> { <var class="field">[[Iterator]]</var>: <var>O</var>, <var class="field">[[NextMethod]]</var>: <emu-val>undefined</emu-val>, <var class="field">[[Done]]</var>: <emu-val>false</emu-val>&nbsp;}.</li><li>If <var>separator</var> is <emu-val>undefined</emu-val>, then<ol><li>Let <var>sep</var> be <emu-val>","</emu-val>.</li></ol></li><li>Else,<ol><li>Let <var>sep</var> be <emu-xref aoid="Completion"><a href="https://tc39.es/ecma262/#sec-completion-ao">Completion</a></emu-xref>(<emu-xref aoid="ToString"><a href="https://tc39.es/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>separator</var>)).</li><li><emu-xref aoid="IfAbruptCloseIterator"><a href="https://tc39.es/ecma262/#sec-ifabruptcloseiterator">IfAbruptCloseIterator</a></emu-xref>(<var>sep</var>, <var>iterated</var>).</li></ol></li><li>Set <var>iterated</var> to ?&nbsp;<emu-xref aoid="GetIteratorDirect"><a href="https://tc39.es/ecma262/#sec-getiteratordirect">GetIteratorDirect</a></emu-xref>(<var>O</var>).</li><li>Let <var>R</var> be the empty String.</li><li>Let <var>first</var> be <emu-val>true</emu-val>.</li><li>Repeat,<ol><li>Let <var>value</var> be ?&nbsp;<emu-xref aoid="IteratorStepValue"><a href="https://tc39.es/ecma262/#sec-iteratorstepvalue">IteratorStepValue</a></emu-xref>(<var>iterated</var>).</li><li>If <var>value</var> is <emu-const>done</emu-const>, return <var>R</var>.</li><li>If <var>first</var> is <emu-val>true</emu-val>, then<ol><li>Set <var>first</var> to <emu-val>false</emu-val>.</li></ol></li><li>Else,<ol><li>Set <var>R</var> to the <emu-xref href="#string-concatenation"><a href="https://tc39.es/ecma262/#string-concatenation">string-concatenation</a></emu-xref> of <var>R</var> and <var>sep</var>.</li></ol></li><li>If <var>value</var> is neither <emu-val>undefined</emu-val> nor <emu-val>null</emu-val>, then<ol><li>Let <var>S</var> be <emu-xref aoid="Completion"><a href="https://tc39.es/ecma262/#sec-completion-ao">Completion</a></emu-xref>(<emu-xref aoid="ToString"><a href="https://tc39.es/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>value</var>)).</li><li><emu-xref aoid="IfAbruptCloseIterator"><a href="https://tc39.es/ecma262/#sec-ifabruptcloseiterator">IfAbruptCloseIterator</a></emu-xref>(<var>S</var>, <var>iterated</var>).</li><li>Set <var>R</var> to the <emu-xref href="#string-concatenation"><a href="https://tc39.es/ecma262/#string-concatenation">string-concatenation</a></emu-xref> of <var>R</var> and <var>S</var>.</li></ol></li></ol></li></ol></emu-alg>
+</emu-clause><emu-annex id="sec-copyright-and-software-license" back-matter="">
+        <h1>Copyright &amp; Software License</h1>
+        
+        <div class="copyright-notice" id="copyright-notice"><h2>Copyright Notice</h2>
+<p>© 2025 Kevin Gibbons</p>
+</div>
+        <h2>Software License</h2>
+        <p>All Software contained in this document ("Software") is protected by copyright and is being made available under the "BSD License", included below. This Software may be subject to third party rights (rights from parties other than Ecma International), including patent rights, and no licenses under such third party rights are granted under this license even if the third party concerned is a member of Ecma International. SEE THE ECMA CODE OF CONDUCT IN PATENT MATTERS AVAILABLE AT <a href="https://ecma-international.org/memento/codeofconduct.htm">https://ecma-international.org/memento/codeofconduct.htm</a> FOR INFORMATION REGARDING THE LICENSING OF PATENT CLAIMS THAT ARE REQUIRED TO IMPLEMENT ECMA INTERNATIONAL STANDARDS.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+<ol>
+  <li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+  <li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+  <li>Neither the name of the authors nor Ecma International may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE ECMA INTERNATIONAL "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ECMA INTERNATIONAL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+      </emu-annex>
+</div></body>
